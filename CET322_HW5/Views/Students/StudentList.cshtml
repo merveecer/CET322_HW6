@@ -1,0 +1,60 @@
+﻿@model List<StudentModel>
+@{
+	ViewData["Title"] = "StudentList";
+}
+
+<div class="all-title-box">
+	<div class="container text-center">
+		<h1>Students</h1>
+	</div>
+</div>
+
+<div id="teachers" class="section wb">
+	<div class="container">
+		<div class="row">
+
+			<div class="col-md-3" style="padding-bottom:30px; padding-top:20px;">
+				<div class="pd">
+					<a asp-action="Create" class="btn btn-light btn-radius btn-brd grd1 btn-block" style="text-align:center;"><i class="fa fa-plus"></i>  Add new student </a>
+
+				</div>
+			</div>
+
+		</div>
+		<div class="row">
+			@foreach (var student in Model) {
+				<div class="col-lg-3 col-md-6 col-12">
+					<div class="our-team">
+						<div class="team-img">
+							<img src="~/uploads/@student.ImageUrl">
+							<div class="social">
+								<ul>
+									@if ((User.Identity.IsAuthenticated && student.SchoolUser != null && User.Identity.Name == student?.SchoolUser?.UserName) && User.Identity.Name == student?.UserofSelectedDepartment.UserName && User.IsInRole("departmentManager") || (User.IsInRole("admin"))) {
+										<li>
+											<a asp-action="Edit" asp-route-id="@student.Id" class="btn btn-primary"
+											   style="text-align:center;width:unset;height: unset;line-height: unset; display:unset; "><i class="fa fa-pencil"></i>Edit</a>
+										</li>
+									}
+									<li>
+										<a asp-action="Detail" asp-route-id="@student.Id" class="btn btn-secondary"
+										   style="text-align:center;width:unset;height: unset;line-height: unset; display:unset; ">Detail</a>
+									</li>
+									@if ((User.Identity.IsAuthenticated && student.SchoolUser != null && User.Identity.Name == student?.SchoolUser?.UserName) && User.Identity.Name == student?.UserofSelectedDepartment.UserName && User.IsInRole("departmentManager") || (User.IsInRole("admin"))) {
+										<li>
+											<a asp-action="Delete" asp-route-id="@student.Id" class="btn btn-danger"
+											   style="text-align:center;width:unset;height: unset;line-height: unset; display:unset; ">Delete</a>
+										</li>
+									}
+								</ul>
+							</div>
+						</div>
+						<div class="team-content">
+							<h3 class="title">@student.Name  @student.Surname</h3>
+							<span class="post">@student.Department.Name</span>
+						</div>
+					</div>
+				</div>
+			}
+		</div><!-- end row -->
+	</div><!-- end container -->
+</div><!-- end section -->

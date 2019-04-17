@@ -1,0 +1,6 @@
+﻿@model IList<CET322_HW5.Data.Department>
+@foreach (var item in Model) {
+	<a class="dropdown-item" asp-area="" asp-controller="Departments"
+	   asp-action="Detail" asp-route-id="@item.Id">@item.Name</a>
+
+}

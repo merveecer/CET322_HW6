@@ -1,0 +1,115 @@
+﻿@model StudentModel
+@{
+	ViewData["Title"] = "Student Edit";
+}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jodit/3.1.92/jodit.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jodit/3.1.92/jodit.min.js"></script>
+
+<div class="all-title-box">
+	<div class="container text-center">
+		<h1>Edit student</h1>
+	</div>
+</div>
+
+<div id="contact" class="section wb">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-xl-12 col-md-12 col-sm-12">
+				<div class="contact_form" style="background-color:white">
+					<div id="message"></div>
+					<form id="contactform" asp-controller="Students" asp-action="Edit" method="post" enctype="multipart/form-data">
+						<div class="row row-fluid">
+							<input type="hidden" asp-for="Id" />
+							<div class="col-lg-3 col-md-6 col-sm-6">
+								<label>
+									Upload Image
+								</label>
+							</div>
+							<div class="col-lg-9 col-md-6 col-sm-6">
+								<input type="file" id="ImageFile" name="ImageFile" class="form-control" />
+								<span asp-validation-for="ImageFile" class="text-danger"></span>
+							</div>
+							<div class="col-lg-3 col-md-6 col-sm-6">
+								<label>
+									@Html.DisplayNameFor(x => x.Name)
+								</label>
+							</div>
+							<div class="col-lg-9 col-md-6 col-sm-6">
+								@Html.TextBoxFor(x => x.Name, null, new { @class = "form-control", @style = "color:black", @placeholder = @Html.DisplayNameFor(x => x.Name) })
+								<span asp-validation-for="Name" class="text-danger"></span>
+							</div>
+							<div class="col-lg-3 col-md-6 col-sm-6">
+								<label>
+									@Html.DisplayNameFor(x => x.Surname)
+								</label>
+							</div>
+							<div class="col-lg-9 col-md-6 col-sm-6">
+								@Html.TextBoxFor(x => x.Surname, null, new { @class = "form-control", @style = "color:black", @placeholder = @Html.DisplayNameFor(x => x.Surname) })
+								<span asp-validation-for="Surname" class="text-danger"></span>
+							</div>
+							<div class="col-lg-3 col-md-6 col-sm-6">
+								<label>
+									@Html.DisplayNameFor(x => x.SchoolNumber)
+								</label>
+							</div>
+							<div class="col-lg-9 col-md-6 col-sm-6">
+								@Html.TextBoxFor(x => x.SchoolNumber, null, new { @class = "form-control", @style = "color:black", @placeholder = @Html.DisplayNameFor(x => x.SchoolNumber) })
+								<span asp-validation-for="SchoolNumber" class="text-danger"></span>
+
+							</div>
+							<div class="col-lg-3 col-md-6 col-sm-6">
+								<label>
+									@Html.DisplayNameFor(x => x.Email)
+								</label>
+							</div>
+							<div class="col-lg-9 col-md-6 col-sm-6">
+								@Html.TextBoxFor(x => x.Email, null, new { @class = "form-control", @style = "color:black", @placeholder = @Html.DisplayNameFor(x => x.Email) })
+								<span asp-validation-for="Email" class="text-danger"></span>
+							</div>
+							<div class="col-lg-3 col-md-6 col-sm-6">
+								<label>
+									@Html.DisplayNameFor(x => x.SelectedDepartmentId)
+								</label>
+							</div>
+							<div class="col-lg-9 col-md-6 col-sm-6">
+								@Html.DropDownListFor(x => x.SelectedDepartmentId, Model.AvailableDepartments, new { @class = "form-control", @style = "color:black;height:55px;" })
+								<span asp-validation-for="SelectedDepartmentId" class="text-danger"></span>
+							</div>
+							<div class="col-lg-3 col-md-6 col-sm-6">
+								<label>
+									@Html.DisplayNameFor(x => x.PersonalInfo)
+								</label>
+							</div>
+							<div class="col-lg-9 col-md-6 col-md-6">
+								@Html.EditorFor(x => x.PersonalInfo, null, new { @class = "form-control", @style = "color:black", @placeholder = @Html.DisplayNameFor(x => x.PersonalInfo) })
+								<span asp-validation-for="PersonalInfo" class="text-danger"></span>
+
+							</div>
+							<div class="text-center pd">
+								<button type="submit" id="submit" class="btn btn-light btn-radius btn-brd grd1 btn-block"><i class="fa fa-save"></i>  Save Changes</button>
+
+							</div>
+							<div class="pd">
+								<button type="button" id="cancelbtnforedit" class="btn btn-light btn-radius btn-brd grd1 btn-block">
+									<i class="fa fa-cancel"></i>  Cancel
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div><!-- end col -->
+
+		</div><!-- end row -->
+	</div><!-- end container -->
+</div><!-- end section -->
+<script type="text/javascript">
+
+
+     $(document).ready(function () {
+            $("#cancelbtnforedit").click(function () {
+                window.location = "@Url.Action("StudentList", "Students")";
+            });
+        });
+	var editor = new Jodit('#PersonalInfo');
+</script>

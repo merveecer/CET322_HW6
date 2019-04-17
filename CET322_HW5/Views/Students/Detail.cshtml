@@ -1,0 +1,90 @@
+﻿@model CET322_HW5.Models.StudentModel
+
+@{
+	ViewData["Title"] = "Student Detail";
+}
+
+<div class="section lb">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+				<div class="post-media wow fadeIn">
+					<img src="~/uploads/@Model.ImageUrl" alt="" style="height:450px;width:300px" class="img-fluid img-rounded">
+				</div><!-- end media -->
+			</div><!-- end col -->
+
+			<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+				<div class="message-box">
+					<h2>Details of the student</h2>
+					<dl class="row">
+						<dt class="col-sm-2">
+							@Html.DisplayNameFor(model => model.Name)
+						</dt>
+						<dd class="col-sm-10">
+							@Html.DisplayFor(model => model.Name)
+						</dd>
+					</dl>
+					<dl class="row">
+						<dt class="col-sm-2">
+							@Html.DisplayNameFor(model => model.Surname)
+						</dt>
+						<dd class="col-sm-10">
+							@Html.DisplayFor(model => model.Surname)
+						</dd>
+					</dl>
+					<dl class="row">
+						<dt class="col-sm-2">
+							@Html.DisplayNameFor(model => model.Email)
+						</dt>
+						<dd class="col-sm-10">
+							@Html.DisplayFor(model => model.Email)
+						</dd>
+					</dl>
+					<dl class="row">
+						<dt class="col-sm-2">
+							@Html.DisplayNameFor(model => model.SchoolNumber)
+						</dt>
+						<dd class="col-sm-10">
+							@Html.DisplayFor(model => model.SchoolNumber)
+						</dd>
+					</dl>
+					<dl class="row">
+						<dt class="col-sm-2">
+							@Html.DisplayNameFor(model => model.DepartmentName)
+						</dt>
+						<dd class="col-sm-10">
+							@Html.DisplayFor(model => model.Department.Name)
+						</dd>
+					</dl>
+					<dl class="row">
+						<dt class="col-sm-2">
+							@Html.DisplayNameFor(model => model.CreatedDate)
+						</dt>
+						<dd class="col-sm-10">
+							@Html.DisplayFor(model => model.CreatedDate)
+						</dd>
+					</dl>
+					<dl class="row">
+						<dt class="col-sm-2">
+							@Html.DisplayNameFor(model => model.CreaterFullName)
+						</dt>
+						<dd class="col-sm-10">
+							@Html.DisplayFor(model => model.CreaterFullName)
+						</dd>
+					</dl>
+					<dl class="row">
+						<dt class="col-sm-2">
+							@Html.DisplayNameFor(model => model.PersonalInfo)
+						</dt>
+						<dd class="col-sm-10">
+							@Html.Raw(Model.PersonalInfo.Replace(System.Environment.NewLine, "<br />"))
+
+						</dd>
+					</dl>
+					<a asp-action="StudentList" class="hover-btn-new orange"><span>Back To The List</span></a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

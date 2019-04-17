@@ -1,0 +1,57 @@
+﻿@model DepartmentModel
+@{
+	ViewData["Title"] = "Department Edit";
+}
+
+<div class="all-title-box">
+	<div class="container text-center">
+		<h1>Edit Department</h1>
+	</div>
+</div>
+
+
+
+<div id="contact" class="section wb">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-xl-12 col-md-12 col-sm-12">
+				<div class="contact_form" style="background-color:white">
+					<div id="message"></div>
+					<form id="contactform" asp-controller="Departments" asp-action="Edit" method="post">
+						<div class="row row-fluid">
+							<input type="hidden" asp-for="Id" />
+							<div class="col-lg-6 col-md-6 col-sm-6">
+								@Html.TextBoxFor(x => x.Name, null, new { @class = "form-control", @style = "color:black", @placeholder = @Html.DisplayNameFor(x => x.Name) })
+								<span asp-validation-for="Name" class="text-danger"></span>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6">
+								@Html.DropDownListFor(x => x.SelectedDepartmentManagerId, Model.AvailableManagers, new { @class = "form-control", @style = "color:black;height:55px;" })
+								<span asp-validation-for="SelectedDepartmentManagerId" class="text-danger"></span>
+							</div>
+							<div class="text-center pd">
+								<button type="submit" class="btn btn-light btn-radius btn-brd grd1 btn-block"><i class="fa fa-save"></i>  Save Changes</button>
+
+							</div>
+							<div class="pd">
+								<button type="button" id="cancelbtn" class=" btn btn-light btn-radius btn-brd grd1 btn-block">
+									<i class="fa fa-cancel"></i>  Cancel
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div><!-- end col -->
+		</div><!-- end row -->
+	</div><!-- end container -->
+</div><!-- end section -->
+<script type="text/javascript">
+
+
+     $(document).ready(function () {
+            $("#cancelbtn").click(function () {
+                window.location = "@Url.Action("DepartmentList", "Departments")";
+            });
+        });
+
+</script>
